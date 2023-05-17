@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('quantity');
-            $table->foreignId('animal_id')->constrained();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('animal_id')->constrained()->nullable();
+            $table->foreignId('product_id')->constrained()->nullable();
             $table->enum('type', ['animal', 'artesanal']);
         });
     }
