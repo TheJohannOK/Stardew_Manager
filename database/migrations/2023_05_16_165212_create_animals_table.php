@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('cost');
+            $table->integer('cost')->nullable();
             $table->string('image');
             $table->integer('interval');
 

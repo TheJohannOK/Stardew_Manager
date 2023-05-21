@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->nullable();
             $table->enum('type', ['animal', 'artesanal']);
             $table->integer('probability');
+            $table->string('image');
 
         });
     }

@@ -10,7 +10,7 @@ class Animal extends Model
     use HasFactory;
 
     public function buildings() {
-        return $this->belongsToMany(Building:class, 'buildings_animals');
+        return $this->belongsToMany(Building::class, 'buildings_animals');
     }
 
     public function allowed() {
@@ -18,6 +18,6 @@ class Animal extends Model
     }
 
     public function products() {
-        return $this->hasMany(Product::class)
+        return $this->hasMany(Product::class);
     }
 }

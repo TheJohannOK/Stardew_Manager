@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('difficulty', ['regular', 'plata', 'oro', 'iridio']);
             $table->integer('price');
             $table->integer('probability');
+            $table->string('image');
         });
     }
 
