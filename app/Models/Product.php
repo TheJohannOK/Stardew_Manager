@@ -9,6 +9,18 @@ class Product extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'quantity',
+        'animal_id',
+        'product_id',
+        'type',
+        'probability',
+        'image'
+    ];
+
     public function animal() {
         return $this->belongsTo(Animal::class);
     }

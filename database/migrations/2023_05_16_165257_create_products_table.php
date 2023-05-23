@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('quantity');
-            $table->foreignId('animal_id')->constrained()->nullable();
-            $table->foreignId('product_id')->constrained()->nullable();
-            $table->enum('type', ['animal', 'artesanal']);
+            $table->foreignId('animal_id')->nullable(true)->constrained('animals');
+            $table->foreignId('product_id')->nullable(true)->constrained('products');
+            $table->enum('type', ['animal', 'artisan']);
             $table->integer('probability');
             $table->string('image');
 

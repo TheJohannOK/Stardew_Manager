@@ -9,6 +9,15 @@ class Animal extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'cost',
+        'image',
+        'interval'
+    ];
+
     public function buildings() {
         return $this->belongsToMany(Building::class, 'buildings_animals');
     }
