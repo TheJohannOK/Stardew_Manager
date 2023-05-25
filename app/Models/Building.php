@@ -9,8 +9,18 @@ class Building extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'capacity',
+        'cost',
+        'image'
+    ];
+
+
     public function materials() {
-        return $this->belongsToMany(Material::class, 'buildings_materials');
+        return $this->belongsToMany(Material::class, 'buildings_materials')->withPivot('quantity');
     }
 
     public function allowed() {

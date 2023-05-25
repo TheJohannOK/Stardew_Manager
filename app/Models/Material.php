@@ -9,7 +9,14 @@ class Material extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'image'
+    ];
+
     public function buildings() {
-        return $this->belongsToMany(Material::class, 'buildings_materials');
+        return $this->belongsToMany(Material::class, 'buildings_materials')->withPivot('quantity');
     }
 }

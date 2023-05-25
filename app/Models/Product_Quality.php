@@ -9,6 +9,16 @@ class Product_Quality extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'product_id',
+        'difficulty',
+        'price',
+        'probability',
+        'image'
+    ];
+
     public function product() {
         return $this->belongsTo(Product::class);
     }
