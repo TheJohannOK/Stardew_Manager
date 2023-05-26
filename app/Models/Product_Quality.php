@@ -9,6 +9,8 @@ class Product_Quality extends Model
 {
     use HasFactory;
 
+    public $table = "products_qualities";
+
     public $timestamps = false;
 
     protected $fillable = [

@@ -19,9 +19,10 @@ class Quality_ProductSeeder extends Seeder
 
         foreach($quality_products as $quality_product){
             Product_Quality::query()->updateOrCreate([
-                'name' => $quality_product['name'],
-                'capacity' => $quality_product['capacity'],
-                'cost' => $quality_product['cost'],
+                'product_id' => $quality_product['product_id'],
+                'difficulty' => $quality_product['difficulty'],
+                'price' => $quality_product['price'],
+                'probability' => $quality_product['probability'],
                 'image' => $quality_product['image']
             ]);
         }
