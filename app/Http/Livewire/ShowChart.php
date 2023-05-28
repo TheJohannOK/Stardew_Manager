@@ -2,32 +2,81 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Animal;
+use App\Models\Product;
+use App\Models\Product_Quality;
 use Livewire\Component;
-use App\Charts\GAnimals;
 
 class ShowChart extends Component
 {
     public $dataPoints;
-    
-    public function mount()
-    {
-        
-    }
+
+    public $intervals;
 
     public function render()
     {
-        $this->dataPoints = array(
-            array("label"=> "Education", "y"=> 284935),
-            array("label"=> "Entertainment", "y"=> 256548),
-            array("label"=> "Lifestyle", "y"=> 245214),
-            array("label"=> "Business", "y"=> 233464),
-            array("label"=> "Music & Audio", "y"=> 200285),
-            array("label"=> "Personalization", "y"=> 194422),
-            array("label"=> "Tools", "y"=> 180337),
-            array("label"=> "Books & Reference", "y"=> 172340),
-            array("label"=> "Travel & Local", "y"=> 118187),
-            array("label"=> "Puzzle", "y"=> 107530)
-        );
+        $animals = Animal::all();
+        $this->dataPoints = [];
+        $this->intervals = [];
+
+        foreach ($animals as $animal) {
+            $products = $animal->products;
+            $productProbabilities = [];
+
+            // Para 
+            $this->intervals[] = [$animal->interval];
+        
+            foreach ($products as $product) {
+                $qualities = $product->qualities;
+        
+                foreach ($qualities as $quality) {
+                    if (isset($productProbabilities[$product->type])) {
+                        // Si ya tenemos un producto del mismo tipo, calculamos la probabilidad acumulada
+                        $productProbabilities[$product->type] += $quality->probability;
+                    } else {
+                        // Si es el primer producto del tipo, simplemente lo agregamos a la lista
+                        $productProbabilities[$product->type] = $quality->probability;
+                    }
+                }
+            }
+        
+            // Agregar los productos con sus probabilidades al arreglo de datos
+            foreach ($productProbabilities as $type => $probability) {
+                // Obtener el primer producto del tipo
+                $product = $products->where('type', $type)->first();
+        
+                // Verificar si se encontró un producto
+                if ($product) {
+                    // Verificar si el producto es de tipo "artisan"
+                    if ($product->type === 'artisan') {
+                        // Obtener el precio del producto "artisan"
+                        $artisanProduct = Product::find($product->product_id);
+                        if ($artisanProduct) {
+                            $dataPoints[] = [
+                                'label' => $animal->name,
+                                'y' => $artisanProduct->price,
+                            ];
+                        }
+                    } else {
+                        // Obtener la calidad del producto
+                        $quality = $product->qualities->first();
+        
+                        // Verificar si se encontró una calidad
+                        if ($quality) {
+                            $dataPoints[] = [
+                                'label' => $animal->name,
+                                'y' => $quality->price,
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+
+        $this->dataPoints = $dataPoints;
+
+
+        
         return view('livewire.show-chart');
     }
 }

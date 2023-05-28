@@ -26,7 +26,7 @@ class Product extends Model
     }
 
     public function qualities() {
-        return $this->hasMany(Product_Quality::class, 'products_qualities');
+        return $this->hasMany(Product_Quality::class);
     }
 
     public function parentProduct() {

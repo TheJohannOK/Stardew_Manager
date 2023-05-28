@@ -38,7 +38,7 @@
     // Función para limitar la cantidad a 0 si es menor que 0
     function limitarCantidad(input) {
         // Verificar si el valor ingresado es menor que 0
-        if (input.value < 0) {
+        if (input.value < 0 || input.value === "" ) {
             // Asignar automáticamente el valor de 0 al campo
             input.value = 0;
         }
