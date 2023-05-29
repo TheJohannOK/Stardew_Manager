@@ -19,7 +19,7 @@ class Animal extends Model
     ];
 
     public function buildings() {
-        return $this->belongsToMany(Building::class, 'buildings_animals');
+        return $this->belongsToMany(Building::class, 'buildings_animals')->withPivot('bought');
     }
 
     public function allowed() {

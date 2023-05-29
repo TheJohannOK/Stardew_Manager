@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('farm_id')->constrained();
             $table->foreignId('building_id')->constrained();
+            $table->boolean('bought')->default(false);
         });
     }
 

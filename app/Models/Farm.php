@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Farm extends Model
 {
@@ -16,6 +18,6 @@ class Farm extends Model
     }
 
     public function buildings(): BelongsToMany {
-        return $this->belongsToMany(Building::class, 'farms_buildings');
+        return $this->belongsToMany(Building::class, 'farms_buildings')->withPivot('bought');
     }
 }

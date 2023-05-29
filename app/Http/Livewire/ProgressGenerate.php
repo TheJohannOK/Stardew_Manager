@@ -8,6 +8,7 @@ use Livewire\Component;
 class ProgressGenerate extends Component
 {
 
+    public $num_G_N;
 
     public $animals;
 
@@ -23,5 +24,23 @@ class ProgressGenerate extends Component
     {
        
         return view('livewire.progress-generate' ); 
+    }
+
+
+    public function submitForm()
+    {
+        Product::create([
+            'name' => $this->name,
+            'amount' => $this->amount,
+            'description' => $this->description,
+            'stock' => $this->stock,
+            'status' => $this->status,
+        ]);
+  
+        $this->successMessage = 'Product Created Successfully.';
+  
+        $this->clearForm();
+  
+        $this->currentStep = 1;
     }
 }

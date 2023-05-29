@@ -28,10 +28,10 @@ class Building extends Model
     }
 
     public function animals() {
-        return $this->belongsToMany(Animal::class, 'buildings_animals');
+        return $this->belongsToMany(Animal::class, 'buildings_animals')->withPivot('bought');
     }
 
     public function farms() {
-        return $this->belongsToMany(Farm::class, 'farms_buildings');
+        return $this->belongsToMany(Farm::class, 'farms_buildings')->withPivot('bought');
     }
 }
