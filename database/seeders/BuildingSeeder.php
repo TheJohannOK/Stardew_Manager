@@ -40,24 +40,24 @@ class BuildingSeeder extends Seeder
         $Establo->materials()->attach($Piedra,['quantity'=>150]);
 
         $Establo_grande = Building::find(2);
-        $Establo_grande->materials()->attach($Madera,['quantity'=>450]);
-        $Establo_grande->materials()->attach($Piedra,['quantity'=>200]);
+        $Establo_grande->materials()->attach($Madera,['quantity'=>800]);
+        $Establo_grande->materials()->attach($Piedra,['quantity'=>350]);
 
         $Establo_lujo = Building::find(3);
-        $Establo_lujo->materials()->attach($Madera,['quantity'=>550]);
-        $Establo_lujo->materials()->attach($Piedra,['quantity'=>300]);
+        $Establo_lujo->materials()->attach($Madera,['quantity'=>1350]);
+        $Establo_lujo->materials()->attach($Piedra,['quantity'=>650]);
 
         $Corral = Building::find(4);
         $Corral->materials()->attach($Madera,['quantity'=>300]);
         $Corral->materials()->attach($Piedra,['quantity'=>100]);
 
         $Corral_grande = Building::find(5);
-        $Corral_grande->materials()->attach($Madera,['quantity'=>400]);
-        $Corral_grande->materials()->attach($Piedra,['quantity'=>150]);
+        $Corral_grande->materials()->attach($Madera,['quantity'=>700]);
+        $Corral_grande->materials()->attach($Piedra,['quantity'=>250]);
 
         $Corral_lujo = Building::find(6);
-        $Corral_lujo->materials()->attach($Madera,['quantity'=>500]);
-        $Corral_lujo->materials()->attach($Piedra,['quantity'=>200]);
+        $Corral_lujo->materials()->attach($Madera,['quantity'=>1200]);
+        $Corral_lujo->materials()->attach($Piedra,['quantity'=>450]);
 
 
         //Relacion con Animales permitidos en una granja

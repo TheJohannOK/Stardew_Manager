@@ -5,11 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Farm;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class ShowFarms extends Component
 {
+    use WireToast; 
+
     public $farms;
-    public $farm;
 
     public function mount(){
 
@@ -27,5 +29,9 @@ class ShowFarms extends Component
     public function delete(Farm $farm){
 
         $farm->delete();
+        toast()
+            ->success('Eliminado correctamente')
+            ->duration(3000)
+            ->push();
     }
 }

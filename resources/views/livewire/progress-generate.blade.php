@@ -2,7 +2,7 @@
     <h1 class="font-bold">¿Cuantos animales necesitas?</h1>
 
     <div class="py-8">
-        <form onsubmit="return validarFormulario()">
+        <form wire:submit.prevent="submit">
             
             <table class="table-fixed border border-separate border-spacing-1 md:container w-full ">
                 <thead>
@@ -13,64 +13,118 @@
                 </thead>
                 <tbody>
                     <!-- Bucle para iterar sobre los animales -->
-                    @foreach ($animals as $index => $animal)
+                    
                     <tr class="odd:bg-white even:bg-slate-50 ">
-                        <td class="text-center">{{$animal->name}}</td>
-                        <!-- Se asigna un identificador único a cada campo de entrada utilizando el índice -->
-                        <td class="text-center"><input type="number" name="cantidad" id="cantidad{{$index}}" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full " value="0" oninput="limitarCantidad(this)"></td>
+                        <td class="text-center">
+                            Gallina
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_G_Nor" id="gallina" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
                     </tr>
-                    @endforeach
+
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Gallina sombría
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_G_Som" id="gallina_som" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Gallina dorada
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_G_Dor" id="gallina_dor" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Pato
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Pat" id="pato" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Conejo
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Con" id="conejo" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Dinosaurio
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Din" id="gallina" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Vaca
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Vac" id="gallina" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Oveja
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Ove" id="gallina" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Cerdo
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Cer" id="gallina" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Avestruz
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Ave" id="gallina" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+                    <tr class="odd:bg-white even:bg-slate-50 ">
+                        <td class="text-center">
+                            Cabra
+                        </td>
+                        <td class="text-center">
+                            <input type="number" wire:model="num_Cab" id="gallina" class="border-slate-200 w-full md:w-48 bg-transparent text-center rounded-full" required min="0">
+                        </td>
+                    </tr>
+                    
+
                 </tbody>
             </table>
             <div class="container mx-auto text-center py-8 ">
                 <label for="nombreGranja">Nombre de la granja:</label>
-                <input type="text" id="nombreGranja" name="nombreGranja" class="border-slate-200 rounded-full" required>
+                <input type="text" wire:model="nombre_granja" id="nombreGranja" class="border-slate-200 rounded-full" required>
             </div>
             <div class="text-center">
-                <button type="submit" class="text-center border rounded-lg bg-sky-500/75 hover:bg-sky-500/100 p-2 ">Iniciar progreso</button>
+                <button type="submit" class="text-center border rounded-full bg-sky-500/50 hover:bg-sky-500/75 p-2 ">Iniciar progreso</button>
             </div>
 
         </form>
     </div>
 </div>
 
-<script>
-    // Función para limitar la cantidad a 0 si es menor que 0
-    function limitarCantidad(input) {
-        // Verificar si el valor ingresado es menor que 0
-        if (input.value < 0 || input.value === "" ) {
-            // Asignar automáticamente el valor de 0 al campo
-            input.value = 0;
-        }
-    }
-
-    // Función para validar el formulario antes de enviarlo
-    function validarFormulario() {
-        // Obtener el valor del campo "Nombre de la granja"
-        var nombreGranja = document.getElementById("nombreGranja").value;
-        // Verificar si el campo está vacío
-        if (nombreGranja.trim() === "") {
-            // Mostrar una alerta indicando que el campo no puede estar vacío
-            alert("Por favor, ingresa el nombre de la granja.");
-            return false; // Evitar el envío del formulario
-        }
-        // Obtener todos los campos de entrada con el nombre "cantidad"
-        var inputs = document.getElementsByName("cantidad");
-        // Iterar sobre cada campo de cantidad
-        for (var i = 0; i < inputs.length; i++) {
-            // Obtener el valor de cantidad y convertirlo a un número entero
-            var cantidad = parseInt(inputs[i].value);
-            // Verificar si la cantidad no es un número
-            if (isNaN(cantidad)) {
-                // Obtener el índice del campo afectado y el nombre del animal correspondiente en la tabla
-                var index = inputs[i].id.replace("cantidad", "");
-                var animal = document.querySelector("table tbody tr:nth-child(" + (parseInt(index) + 1) + ") td:first-child").textContent;
-                // Mostrar una alerta con un mensaje que incluye el nombre del animal y la advertencia sobre la cantidad no válida
-                alert("La cantidad de animales para '" + animal + "' debe ser un número entero positivo");
-                return false;
-            }
-        }
-        // Si todas las validaciones pasan, permitir enviar el formulario
-        return true;
-    }
-</script>
