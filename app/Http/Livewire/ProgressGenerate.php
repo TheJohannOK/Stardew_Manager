@@ -27,7 +27,7 @@ class ProgressGenerate extends Component
 
     function n_edi_necesarios($numero, $capacidad) {
         $totalGranjas = array_fill(0, count($capacidad), 0); // Número de elementos en cada granja
-    
+        
         for ($i = 0; $i < count($capacidad); $i++) {
             if ($numero > 0) {
                 if ($i === count($capacidad) - 1) {
@@ -48,150 +48,67 @@ class ProgressGenerate extends Component
     
 
     public function submit()
-{
-    $farm = Farm::create([
-        'name' => $this->nombre_granja,
-        'user_id' => Auth::id()
-    ]);
+    {
+        $farm = Farm::create([
+            'name' => $this->nombre_granja,
+            'user_id' => Auth::id()
+        ]);
 
-    if ($this->num_G_Nor !== 0) {
-        $Gallina = Animal::find(1);
-        $Edicios_per_nor = $Gallina->allowed->sortByDesc('capacity');
-        $capacidades_G_Nor = [];
-        foreach ($Edicios_per_nor as $edificio) {
-            $capacidades_G_Nor[] = $edificio->capacity;
-        }
-        toast()
-            ->success(implode(' ', $capacidades_G_Nor))
-            ->duration(10000)
-            ->push();
-        $granjas_G_Nor = $this->n_edi_necesarios($this->num_G_Nor, $capacidades_G_Nor);
-        
-        toast()
-            ->success(implode(' ', $granjas_G_Nor))
-            ->duration(10000)
-            ->push();
+        $this->asignarAnimales(1, 'Gallina normal', $this->num_G_Nor, $farm);
+        $this->asignarAnimales(2, 'Gallina sombría', $this->num_G_Som, $farm);
+        $this->asignarAnimales(3, 'Gallina dorada', $this->num_G_Dor, $farm);
+        $this->asignarAnimales(4, 'Pato', $this->num_Pat, $farm);
+        $this->asignarAnimales(5, 'Conejo', $this->num_Con, $farm);
+        $this->asignarAnimales(6, 'Dinosaurio', $this->num_Din, $farm);
+        $this->asignarAnimales(7, 'Vaca', $this->num_Vac, $farm);
+        $this->asignarAnimales(8, 'Oveja', $this->num_Ove, $farm);
+        $this->asignarAnimales(9, 'Cerdo', $this->num_Cer, $farm);
+        $this->asignarAnimales(10, 'Avestruz', $this->num_Ave, $farm);
+        $this->asignarAnimales(11, 'Cabra', $this->num_Cab, $farm);
     }
 
-    if ($this->num_G_Som !== 0) {
-        $Gallina_sombria = Animal::find(2);
-        $Edicios_per_som = $Gallina_sombria->allowed->sortByDesc('capacity');
-        $capacidades_G_Som = [];
-        foreach ($Edicios_per_som as $edificio) {
-            $capacidades_G_Som[] = $edificio->capacity;
+    function asignarAnimales($animalId, $animalName, $numAnimales, $farm)
+    {
+        if ($numAnimales !== 0) {
+            $animal = Animal::find($animalId);
+            $edificios = $animal->allowed->sortByDesc('capacity');
+            $capacidades = [];
+            foreach ($edificios as $edificio) {
+                $capacidades[] = $edificio->capacity;
+            }
+            $granjas = $this->n_edi_necesarios($numAnimales, $capacidades);
+    
+            $count = 0;
+            foreach ($edificios as $edificio) {
+                if ($numAnimales <= 0) {
+                    break; // Si no hay más animales para asignar, se rompe el bucle principal
+                }
+    
+                $n_granjas = $granjas[$count]; // Obtiene el número de granjas necesarias para el edificio actual
+    
+                if ($n_granjas !== 0) {
+                    for ($j = 0; $j < $n_granjas; $j++) { // Itera a través de cada granja necesaria para el edificio actual
+                        $farm->buildings()->attach($edificio);
+                        $capacity = $edificio->capacity; // Obtiene la capacidad del edificio actual
+    
+                        if ($numAnimales <= 0) {
+                            break; // Si no hay más animales para asignar, se rompe el bucle interno
+                        }
+    
+                        for ($k = 1; $k <= $capacity; $k++) { // Itera hasta que se alcance la capacidad del edificio actual
+                            if ($numAnimales <= 0) {
+                                break; // Si no hay más animales para asignar, se rompe el bucle más interno
+                            }
+    
+                            $edificio->animals()->attach($animal); // Asigna el animal al edificio actual
+                            $numAnimales--; // Reduce el contador de animales restantes
+                        }
+                    }
+                }
+                $count++;
+            }
         }
-        $granjas_G_Som = $this->n_edi_necesarios($this->num_G_Som, $capacidades_G_Som);
-        
-        // Resto del código
     }
 
-    if ($this->num_G_Dor !== 0) {
-        $Gallina_dorada = Animal::find(3);
-        $Edicios_per_dor = $Gallina_dorada->allowed->sortByDesc('capacity');
-        $capacidades_G_Dor = [];
-        foreach ($Edicios_per_dor as $edificio) {
-            $capacidades_G_Dor[] = $edificio->capacity;
-        }
-        $granjas_G_Dor = $this->n_edi_necesarios($this->num_G_Dor, $capacidades_G_Dor);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Pat !== 0) {
-        $Pato = Animal::find(4);
-        $Edicios_pat = $Pato->allowed->sortByDesc('capacity');
-        $capacidades_Pat = [];
-        foreach ($Edicios_pat as $edificio) {
-            $capacidades_Pat[] = $edificio->capacity;
-        }
-        $granjas_Pat = $this->n_edi_necesarios($this->num_Pat, $capacidades_Pat);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Con !== 0) {
-        $Conejo = Animal::find(5);
-        $Edicios_con = $Conejo->allowed->sortByDesc('capacity');
-        $capacidades_Con = [];
-        foreach ($Edicios_con as $edificio) {
-            $capacidades_Con[] = $edificio->capacity;
-        }
-        $granjas_Con = $this->n_edi_necesarios($this->num_Con, $capacidades_Con);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Din !== 0) {
-        $Dinosaurio = Animal::find(6);
-        $Edicios_din = $Dinosaurio->allowed->sortByDesc('capacity');
-        $capacidades_Din = [];
-        foreach ($Edicios_din as $edificio) {
-            $capacidades_Din[] = $edificio->capacity;
-        }
-        $granjas_Din = $this->n_edi_necesarios($this->num_Din, $capacidades_Din);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Vac !== 0) {
-        $Vaca = Animal::find(7);
-        $Edicios_vac = $Vaca->allowed->sortByDesc('capacity');
-        $capacidades_Vac = [];
-        foreach ($Edicios_vac as $edificio) {
-            $capacidades_Vac[] = $edificio->capacity;
-        }
-        $granjas_Vac = $this->n_edi_necesarios($this->num_Vac, $capacidades_Vac);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Ove !== 0) {
-        $Oveja = Animal::find(8);
-        $Edicios_ove = $Oveja->allowed->sortByDesc('capacity');
-        $capacidades_Ove = [];
-        foreach ($Edicios_ove as $edificio) {
-            $capacidades_Ove[] = $edificio->capacity;
-        }
-        $granjas_Ove = $this->n_edi_necesarios($this->num_Ove, $capacidades_Ove);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Cer !== 0) {
-        $Cerdo = Animal::find(9);
-        $Edicios_cer = $Cerdo->allowed->sortByDesc('capacity');
-        $capacidades_Cer = [];
-        foreach ($Edicios_cer as $edificio) {
-            $capacidades_Cer[] = $edificio->capacity;
-        }
-        $granjas_Cer = $this->n_edi_necesarios($this->num_Cer, $capacidades_Cer);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Ave !== 0) {
-        $Avestruz = Animal::find(10);
-        $Edicios_ave = $Avestruz->allowed->sortByDesc('capacity');
-        $capacidades_Ave = [];
-        foreach ($Edicios_ave as $edificio) {
-            $capacidades_Ave[] = $edificio->capacity;
-        }
-        $granjas_Ave = $this->n_edi_necesarios($this->num_Ave, $capacidades_Ave);
-        
-        // Resto del código
-    }
-
-    if ($this->num_Cab !== 0) {
-        $Cabra = Animal::find(11);
-        $Edicios_cab = $Cabra->allowed->sortByDesc('capacity');
-        $capacidades_Cab = [];
-        foreach ($Edicios_cab as $edificio) {
-            $capacidades_Cab[] = $edificio->capacity;
-        }
-        $granjas_Cab = $this->n_edi_necesarios($this->num_Cab, $capacidades_Cab);
-        
-    }
-
-}
 
 }
