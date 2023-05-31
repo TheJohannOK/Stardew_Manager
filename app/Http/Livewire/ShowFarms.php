@@ -26,7 +26,7 @@ class ShowFarms extends Component
     public function delete(Farm $farm){
 
         $farm->delete();
-        $this->farms = $this->farm->refresh();
+        $this->farms = Farm::where('user_id',Auth::user()->id)->get();
         toast()
             ->success('Eliminado correctamente')
             ->duration(3000)
