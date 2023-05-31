@@ -65,6 +65,12 @@ class ProgressGenerate extends Component
         $this->asignarAnimales(9, 'Cerdo', $this->num_Cer, $farm);
         $this->asignarAnimales(10, 'Avestruz', $this->num_Ave, $farm);
         $this->asignarAnimales(11, 'Cabra', $this->num_Cab, $farm);
+
+        return redirect()->to('/managing-farm/' . $farm->id);
+        toast()
+            ->success('Granja creada!!')
+            ->duration(3000)
+            ->push();
     }
 
     function asignarAnimales($animalId, $animalName, $numAnimales, $farm)

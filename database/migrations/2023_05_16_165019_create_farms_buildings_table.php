@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('farms_buildings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('farm_id')->constrained();
-            $table->foreignId('building_id')->constrained();
+            $table->foreignId('farm_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('building_id')->constrained()->cascadeOnDelete();
             $table->boolean('bought')->default(false);
         });
     }

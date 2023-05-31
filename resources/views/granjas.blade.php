@@ -11,8 +11,12 @@
                 <div class="p-6 text-gray-900">
                     <!--LIVEWIRE -->
                     @livewire('show-farms')
+                    
+                    
+                    
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+

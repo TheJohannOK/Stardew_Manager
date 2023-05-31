@@ -1,11 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\DisplayFarm;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/ojete', function () {
-    return view('ojete');
-});
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('dashboard');
@@ -29,9 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/cformulario-granero', function () {
-        return view('formulario-granjero');
-    });
+
+    Route::get('/managing-farm/{id_farm}', DisplayFarm::class);
 });
 
 require __DIR__.'/auth.php';
