@@ -40,7 +40,7 @@ class ShowChart extends Component
                 }
             }
         
-            // Agregar los productos con sus probabilidades al arreglo de datos
+            // Agregar los productos con sus probabilidades al array de datos
             foreach ($productProbabilities as $type => $probability) {
                 // Obtener el primer producto del tipo
                 $product = $products->where('type', $type)->first();
