@@ -23,6 +23,6 @@ class Farm extends Model
     }
 
     public function buildings(): BelongsToMany {
-        return $this->belongsToMany(Building::class, 'farms_buildings')->withPivot('bought');
+        return $this->belongsToMany(Building::class, 'farms_buildings')->withPivot('bought','id');
     }
 }

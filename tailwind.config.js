@@ -15,6 +15,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                ar: ['arbutus', ...defaultTheme.fontFamily.sans],
+                ga: ['gabriela', ...defaultTheme.fontFamily.sans],
             },
         },
     },

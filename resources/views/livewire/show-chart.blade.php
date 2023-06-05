@@ -1,7 +1,9 @@
-<div id="chartContainer" style="" class="w-full h-96 p-4">
+<div id="chartContainer" style="" class="w-full h-96 p-2 ">
 
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     
+    
+
     <script >
         window.onload = function () {
             // Variable para almacenar los datos
@@ -13,9 +15,7 @@
             var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 theme: "light2", // "light1", "light2", "dark1", "dark2"
-                title: {
-                    text: "Rentabilidad animales"
-                },
+                
                 axisY: {
                     title: "Coste"
                 },
@@ -82,20 +82,20 @@
         
 </div>
 
-<div class="p-6 text-gray-900 text-center md:flex ">
+<div class="p-6 font-semibold text-orange-900 text-center md:flex ">
     <div class="p-2 " >
         <label for="dias">Número de días:</label>
-        <input type="number" id="dias" name="dias" value="7" required min="0" class="border-slate-200 rounded-full text-center">
+        <input type="number" id="dias" name="dias" value="7" required min="0" class="border-white hover:border-orange-900 rounded-full text-center bg-amber-100">
     </div>
 
     <div class="p-2 ">
         <label for="animales">Número de animales:</label>
-        <input type="number" id="animales" name="animales" value="1" required min="0" class="border-slate-200 rounded-full text-center">
+        <input type="number" id="animales" name="animales" value="1" required min="0" class="border-white hover:border-orange-900 rounded-full text-center bg-amber-100">
     </div>
 
     <div class="p-2 ">
         <label for="profesion">Elegir Profesión:</label>
-        <select id="profesion" name="profesion" class="border-slate-200 rounded-full">
+        <select id="profesion" name="profesion" class="border-white hover:border-orange-900 rounded-full bg-amber-100">
             <option value="sin_profesion" selected >Sin Profesión</option>
             <option value="ranchero">Ranchero</option>
             <option value="artesano">Artesano</option>

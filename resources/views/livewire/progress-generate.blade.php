@@ -1,10 +1,10 @@
 <div>
-    <h1 class="font-bold">¿Cuantos animales necesitas?</h1>
+    <h1 class="text-center m-3 text-orange-900 font-semibold text-2xl">¿Cuantos animales necesitas?</h1>
 
-    <div class="py-8">
+    <div class="py-8 text-orange-900 text-lg">
         <form wire:submit.prevent="submit">
             
-            <table class="table-fixed border border-separate border-spacing-1 md:container w-full ">
+            <table class="table-fixed border border-separate border-spacing-1 w-full ">
                 <thead>
                     <tr class="bg-slate-50">
                         <th>Animales</th>
@@ -121,7 +121,7 @@
                 <input type="text" wire:model="nombre_granja" id="nombreGranja" class="border-slate-200 rounded-full" required>
             </div>
             <div class="text-center">
-                <button type="submit" class="text-center border rounded-full bg-sky-500/50 hover:bg-sky-500/75 p-2 ">Iniciar progreso</button>
+                <button type="submit" class="text-center border rounded-full bg-yellow-100 hover:bg-yellow-300 p-3 text-lg font-semibold">Iniciar progreso</button>
             </div>
 
         </form>

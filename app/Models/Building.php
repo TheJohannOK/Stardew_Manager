@@ -32,6 +32,6 @@ class Building extends Model
     }
 
     public function farms() {
-        return $this->belongsToMany(Farm::class, 'farms_buildings')->withPivot('bought');
+        return $this->belongsToMany(Farm::class, 'farms_buildings')->withPivot('bought','id');
     }
 }

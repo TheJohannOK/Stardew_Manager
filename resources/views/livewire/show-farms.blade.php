@@ -1,6 +1,6 @@
-<div>
+<div class="text-orange-900 text-lg">
     
-    <table class="table-fixed border border-separate border-spacing-1 md:container w-full">
+    <table class="table-fixed border border-separate border-spacing-1 w-full">
         <thead>
             <tr class="bg-slate-50">
                 <th>Granjas</th>
