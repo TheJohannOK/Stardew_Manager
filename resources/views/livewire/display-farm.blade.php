@@ -9,8 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg p-2">
                 <div class="border border-amber-700 border-8 bg-amber-200 text-orange-900 text-center p-2 font-semibold">
-                        <button wire:click="redirect1" >¿Quieres crear otro progreso?</button>
-                        <button wire:click="redirect2" >¿Quieres mirar mas granjas?</button>
+                        <button wire:click="redirect1" class="border-amber-700 hover:border-b-2">¿Quieres crear otro progreso?</button>
+                        <button wire:click="redirect2" class="border-amber-700 hover:border-b-2">¿Quieres mirar mas granjas?</button>
                 </div>
             </div>
 

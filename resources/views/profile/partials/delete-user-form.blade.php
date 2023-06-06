@@ -1,10 +1,10 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-semibold text-orange-900">
             {{ 'Borrar cuenta' }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="mt-1 text-sm text-orange-900">
             {{ 'Borra tu cuenta de forma definitiva, eliminando cualquier progreso registrado.' }}
         </p>
     </header>

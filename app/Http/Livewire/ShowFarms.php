@@ -23,6 +23,10 @@ class ShowFarms extends Component
         return view('livewire.show-farms');
     }
 
+    function redirect1(){
+        return redirect()->to('/progreso-granjero');
+    }
+
     public function delete(Farm $farm){
 
         $farm->delete();
